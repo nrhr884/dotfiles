@@ -23,6 +23,7 @@ set ignorecase
 set smartcase 
 set incsearch 
 set hlsearch  
+noremap <ESC><ESC> :noh<CR>
 
 " バックスラッシュやクエスチョンを状況に合わせ自動的にエスケープ
 cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
