@@ -193,7 +193,7 @@ endfunction
 "Unite.vim"
 noremap <C-N> :Unite buffer<CR>
 noremap <C-P> :VimFiler<CR>
-noremap <silent>,ul :Unite -buffer-name=search line -start-insert -no-quit<CR>
+noremap <silent>,f :Unite -buffer-name=search line -start-insert -no-quit<CR>
 noremap <silent>,uu :Unite file_mru<CR> 
 noremap <silent>,uo :Unite outline<CR>
 noremap <silent>,mm :Unite mark<CR>
