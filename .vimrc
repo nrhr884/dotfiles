@@ -16,7 +16,7 @@ set wildmenu
 "Run
 autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby %<CR>
 autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!python %<CR>
-autocmd BufNewFile,BufRead *.cpp nnoremap <C-e> :!g++ % && ./a.out<CR>
+autocmd BufNewFile,BufRead *.cpp nnoremap <C-e> :!g++ -std=c++11 % && ./a.out<CR>
 
 "Search
 set ignorecase
@@ -62,7 +62,6 @@ set noswapfile
 "表示関連"
 set number
 set nowrap
-set colorcolumn=80
 
 " 前時代的スクリーンベルを無効化
 set t_vb=
@@ -191,8 +190,9 @@ endfunction
 "Unite.vimの設定"
 noremap <C-N> :Unite buffer<CR>
 noremap <C-P> :VimFiler<CR>
-"noremap <C-L> :Unite outline<CR>
 noremap <C-L>  :Unite line<CR>
+noremap <silent>,uu :Unite file_mru<CR> 
+noremap <silent>,uo :Unite outline<CR>
 
 " コメントアウトを切り替えるマッピング
 " \c でカーソル行をコメントアウト
