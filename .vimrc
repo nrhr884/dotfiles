@@ -14,6 +14,7 @@ set title
 set wildmenu
 
 "Run
+"autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby % < %:h/input.txt<CR>
 autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby %<CR>
 autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!python %<CR>
 autocmd BufNewFile,BufRead *.cpp nnoremap <C-e> :!g++ -std=c++11 % && ./a.out<CR>
@@ -165,6 +166,8 @@ NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'tyru/caw.vim'
@@ -187,28 +190,33 @@ function! s:my_cr_function()
   return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 
-"Unite.vimの設定"
+"Unite.vim"
 noremap <C-N> :Unite buffer<CR>
 noremap <C-P> :VimFiler<CR>
-noremap <C-L>  :Unite line<CR>
+noremap <silent>,ul :Unite -buffer-name=search line -start-insert -no-quit<CR>
 noremap <silent>,uu :Unite file_mru<CR> 
 noremap <silent>,uo :Unite outline<CR>
+noremap <silent>,mm :Unite mark<CR>
 
-" コメントアウトを切り替えるマッピング
-" \c でカーソル行をコメントアウト
-" 再度 \c でコメントアウトを解除
-" 選択してから複数行の \c も可能
+"NeoSnippet
+ " Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+"caw
 nmap \c <Plug>(caw:I:toggle)
 vmap \c <Plug>(caw:I:toggle)
-
-" \C でコメントアウトの解除
 nmap \C <Plug>(caw:I:uncomment)
 vmap \C <Plug>(caw:I:uncomment)
 
-" <Space>m でカーソル下の単語、もしくは選択した範囲のハイライトを行う
-" 再度 <Space>m を行うとカーソル下のハイライトを解除する
-" これは複数の単語のハイライトを行う事もできる
-" <Space>M で全てのハイライトを解除する
+" quickhl
 nmap <Space>m <Plug>(quickhl-manual-this)
 xmap <Space>m <Plug>(quickhl-manual-this)
 nmap <Space>M <Plug>(quickhl-manual-reset)
