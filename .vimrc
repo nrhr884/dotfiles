@@ -13,16 +13,16 @@ set showcmd
 set title
 set wildmenu
 
-"スクリプト実行関連
+"Run
 autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby %<CR>
 autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!python %<CR>
 autocmd BufNewFile,BufRead *.cpp nnoremap <C-e> :!g++ % && ./a.out<CR>
 
-"検索関連"
-set ignorecase          " 大文字小文字を区別しない
-set smartcase           " 検索文字に大文字がある場合は大文字小文字を区別
-set incsearch           " インクリメンタルサーチ
-set hlsearch            " 検索マッチテキストをハイライト (2013-07-03 14:30 修正）
+"Search
+set ignorecase
+set smartcase 
+set incsearch 
+set hlsearch  
 
 " バックスラッシュやクエスチョンを状況に合わせ自動的にエスケープ
 cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
@@ -98,6 +98,11 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+" Shift + 矢印でウィンドウサイズを変更
+nnoremap <S-Left>  <C-w><<CR>
+nnoremap <S-Right> <C-w>><CR>
+nnoremap <S-Up>    <C-w>-<CR>
+nnoremap <S-Down>  <C-w>+<CR>
 
 " make, grep などのコマンド後に自動的にQuickFixを開く
 autocmd MyAutoCmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
