@@ -130,12 +130,10 @@ function! s:ChangeCurrentDir(directory, bang)
     else
         execute 'lcd' . a:directory
     endif
-
     if a:bang == ''
         pwd
     endif
 endfunction
-
 
 "NeoBundle関連"
 filetype on
@@ -192,8 +190,8 @@ endfunction
 "Unite.vimの設定"
 noremap <C-N> :Unite buffer<CR>
 noremap <C-P> :VimFiler<CR>
-noremap <C-L> :Unite outline<CR>
-
+"noremap <C-L> :Unite outline<CR>
+noremap <C-L>  :Unite line<CR>
 
 " コメントアウトを切り替えるマッピング
 " \c でカーソル行をコメントアウト
