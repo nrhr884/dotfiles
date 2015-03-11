@@ -71,6 +71,7 @@ set listchars=
 
 "マクロ関連"
 inoremap jj <Esc>
+inoremap JJ <Esc>
 
 " カーソル下の単語を * で検索
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n', 'g')<CR><CR>
@@ -197,6 +198,7 @@ noremap <silent>,f :Unite -buffer-name=search line -start-insert -no-quit<CR>
 noremap <silent>,uu :Unite file_mru<CR> 
 noremap <silent>,uo :Unite outline<CR>
 noremap <silent>,mm :Unite mark<CR>
+noremap <silent>,bb :Unite bookmark<CR>
 
 " unite grep に ag(The Silver Searcher) を使う
 if executable('ag')
@@ -218,10 +220,10 @@ if has('conceal')
 endif
 
 "caw
-nmap \c <Plug>(caw:I:toggle)
-vmap \c <Plug>(caw:I:toggle)
-nmap \C <Plug>(caw:I:uncomment)
-vmap \C <Plug>(caw:I:uncomment)
+nmap ¥c <Plug>(caw:I:toggle)
+vmap ¥c <Plug>(caw:I:toggle)
+nmap ¥C <Plug>(caw:I:uncomment)
+vmap ¥C <Plug>(caw:I:uncomment)
 
 " quickhl
 nmap <Space>m <Plug>(quickhl-manual-this)
